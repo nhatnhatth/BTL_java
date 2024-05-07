@@ -4,13 +4,23 @@
 
 package com.mycompany.quanlybanhangsieuthi;
 
+import com.mycompany.quanlybanhangsieuthi.view.LoginForm;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author Acer
  */
 public class Quanlybanhangsieuthi {
+    
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+
+        }
+        new LoginForm().setVisible(true);
     }
 }
