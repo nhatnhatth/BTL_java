@@ -4,6 +4,12 @@
  */
 package com.mycompany.quanlybanhangsieuthi.view;
 
+import com.mycompany.quanlybanhangsieuthi.dao.UserDAO;
+import com.mycompany.quanlybanhangsieuthi.model.User;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author Acer
@@ -119,7 +125,23 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        UserDAO dao = new UserDAO();
+        ArrayList<User> users = dao.readDB();
+        String username = jTextField1.getText();
+        String pass = jPasswordField1.getText();
+        User userLogin = new User(-1, "","", "");
+        for (User user: users){
+            if (user.getUsername().equals(username)) {
+                if (user.getPassword().equals(pass)) {
+                    userLogin = user;
+                    JOptionPane.showMessageDialog(this, "Thành công", "Successful", JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Sai tên mật khẩu!", "Fail", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Sai tên đăng nhập!", "Fail", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -129,7 +151,7 @@ public class LoginForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
