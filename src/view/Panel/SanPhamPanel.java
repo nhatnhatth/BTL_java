@@ -1,6 +1,8 @@
 package view.Panel;
 
+import controller.BUS.NhaCungCapBUS;
 import controller.BUS.SanPhamBUS;
+import controller.DAO.NhaCungCapDAO;
 import view.Component.IntegratedSearch;
 import view.Component.MainFunction;
 import view.Dialog.AddSPDialog;
@@ -35,6 +37,7 @@ public final class SanPhamPanel extends JPanel implements ActionListener {
     DefaultTableModel tblModel;
     Main m;
     public SanPhamBUS spBUS = new SanPhamBUS();
+    public NhaCungCapBUS nccBUS = new NhaCungCapBUS();
 
     public ArrayList<model.SanPham> listSP = spBUS.getAll();
 
@@ -47,7 +50,7 @@ public final class SanPhamPanel extends JPanel implements ActionListener {
         tableSanPham = new JTable();
         scrollTableSanPham = new JScrollPane();
         tblModel = new DefaultTableModel();
-        String[] header = new String[]{"Mã SP", "Tên sản phẩm", "Gia", "So luong", "Loai SP"};
+        String[] header = new String[]{"Mã SP", "Tên sản phẩm", "Gia", "So luong", "Loai SP", "Nha Cung Cap"};
         tblModel.setColumnIdentifiers(header);
         tableSanPham.setModel(tblModel);
         scrollTableSanPham.setViewportView(tableSanPham);
@@ -59,7 +62,8 @@ public final class SanPhamPanel extends JPanel implements ActionListener {
                 columnModel.getColumn(i).setCellRenderer(centerRenderer);
             }
         }
-        tableSanPham.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tableSanPham.getColumnModel().getColumn(5).setPreferredWidth(180);
+        tableSanPham.getColumnModel().getColumn(1).setPreferredWidth(120);
         tableSanPham.setFocusable(false);
         tableSanPham.setAutoCreateRowSorter(true);
         TableSorter.configureTableColumnSorter(tableSanPham, 2, TableSorter.INTEGER_COMPARATOR);
@@ -122,7 +126,7 @@ public final class SanPhamPanel extends JPanel implements ActionListener {
     public void loadDataTalbe(ArrayList<model.SanPham> result) {
         tblModel.setRowCount(0);
         for (model.SanPham sp : result) {
-            tblModel.addRow(new Object[]{sp.getMasp(), sp.getTensp(), sp.getGia(), sp.getSoluong(), sp.getLoaisp()});
+            tblModel.addRow(new Object[]{sp.getMasp(), sp.getTensp(), sp.getGia(), sp.getSoluong(), sp.getLoaisp(), nccBUS.getNcc(sp.getMancc()).getTenncc()});
         }
     }
 
@@ -173,7 +177,7 @@ public final class SanPhamPanel extends JPanel implements ActionListener {
     public int getRowSelected() {
         int index = tableSanPham.getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm");
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm!");
         }
         return index;
     }

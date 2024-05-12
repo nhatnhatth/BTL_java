@@ -34,6 +34,10 @@ public class NhaCungCapBUS {
         listNcc = nhaCungCapDAO.selectAll();
     }
 
+    public NhaCungCap getNcc(int mancc) {
+        return nhaCungCapDAO.selectById(String.valueOf(mancc));
+    }
+
     public ArrayList<NhaCungCap> search(String text, String type) {
         ArrayList<NhaCungCap> result = new ArrayList<>();
         text = text.toLowerCase();

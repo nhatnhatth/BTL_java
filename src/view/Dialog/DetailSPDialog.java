@@ -1,9 +1,12 @@
 package view.Dialog;
 
+import controller.BUS.NhaCungCapBUS;
+import model.NhaCungCap;
 import model.SanPham;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class DetailSPDialog extends JDialog {
 
@@ -11,6 +14,9 @@ public class DetailSPDialog extends JDialog {
     private JLabel giaField;
     private JLabel soLuongField;
     private JLabel loaiSPField;
+    private JLabel nccField;
+    NhaCungCapBUS bus = new NhaCungCapBUS();
+    ArrayList<NhaCungCap> list = bus.getAll();
 
     public DetailSPDialog(JFrame parent, SanPham sp) {
         super(parent, "Detail sản phẩm", false);
@@ -46,7 +52,6 @@ public class DetailSPDialog extends JDialog {
         giaField = new JLabel();
         giaField.setHorizontalAlignment(JTextField.LEFT);
         giaField.setText(String.valueOf(sp.getGia()));
-        giaField.setHorizontalAlignment(JTextField.RIGHT);
         panel.add(giaField, gbc);
 
         gbc.gridx = 0;
@@ -58,7 +63,6 @@ public class DetailSPDialog extends JDialog {
         soLuongField = new JLabel();
         soLuongField.setHorizontalAlignment(JTextField.LEFT);
         soLuongField.setText(String.valueOf(sp.getSoluong()));
-        soLuongField.setHorizontalAlignment(JTextField.RIGHT);
         panel.add(soLuongField, gbc);
 
         gbc.gridx = 0;
@@ -71,6 +75,17 @@ public class DetailSPDialog extends JDialog {
         loaiSPField.setHorizontalAlignment(JTextField.LEFT);
         loaiSPField.setText(sp.getLoaisp());
         panel.add(loaiSPField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(new JLabel("Nha cung cap:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        nccField = new JLabel();
+        nccField.setHorizontalAlignment(JTextField.LEFT);
+        nccField.setText(bus.getNcc(sp.getMancc()).getTenncc());
+        panel.add(nccField, gbc);
 
         // Thêm nút "Thêm" và "Hủy"
         JButton themButton = new JButton("Ok");

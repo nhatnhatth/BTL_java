@@ -105,7 +105,7 @@ public class NhaCungCapDAO implements DAO<NhaCungCap> {
             ResultSet rs = (ResultSet) pst.executeQuery();
             while(rs.next()){
                 int ma = rs.getInt("mancc");
-                String ten = rs.getString("tenkhachhang");
+                String ten = rs.getString("tenncc");
                 String diachi = rs.getString("diachi");
                 String sdt = rs.getString("sdt");
                 result = new NhaCungCap(ma, ten, sdt, diachi);

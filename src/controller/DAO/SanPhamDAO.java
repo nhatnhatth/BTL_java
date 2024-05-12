@@ -22,12 +22,13 @@ public class SanPhamDAO implements DAO<SanPham> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `sanpham`(`tensp`, `gia`, `soluong`, `loaisp`) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO `sanpham`(`tensp`, `gia`, `soluong`, `loaisp`, `mancc`) VALUES (?,?,?,?,?)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, t.getTensp());
             pst.setInt(2, t.getGia());
             pst.setInt(3, t.getSoluong());
             pst.setString(4, t.getLoaisp());
+            pst.setInt(5, t.getMancc());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
@@ -40,13 +41,14 @@ public class SanPhamDAO implements DAO<SanPham> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "UPDATE `sanpham` SET `tensp`=?,`gia`=?,`soluong`=?,`loaisp`=? WHERE `masp`=?";
+            String sql = "UPDATE `sanpham` SET `tensp`=?,`gia`=?,`soluong`=?,`loaisp`=?,`mancc`=? WHERE `masp`=?";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, t.getTensp());
             pst.setInt(2, t.getGia());
             pst.setInt(3, t.getSoluong());
             pst.setString(4, t.getLoaisp());
-            pst.setInt(5, t.getMasp());
+            pst.setInt(5, t.getMancc());
+            pst.setInt(6, t.getMasp());
 
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);

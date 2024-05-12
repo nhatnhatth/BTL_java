@@ -1,9 +1,12 @@
 package view.Dialog;
 
+import controller.BUS.NhaCungCapBUS;
+import model.NhaCungCap;
 import model.SanPham;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class AddSPDialog extends JDialog {
 
@@ -11,7 +14,11 @@ public class AddSPDialog extends JDialog {
     private JTextField giaField;
     private JTextField soLuongField;
     private JTextField loaiSPField;
+    JComboBox<String> comboBox;
     private Callback callback;
+    DefaultComboBoxModel<String> model;
+    NhaCungCapBUS bus = new NhaCungCapBUS();
+    ArrayList<NhaCungCap> list = bus.getAll();
 
     public AddSPDialog(JFrame parent, Callback callback) {
         super(parent, "Thêm sản phẩm", false);
@@ -46,7 +53,6 @@ public class AddSPDialog extends JDialog {
         gbc.gridy = 1;
         giaField = new JTextField(10);
         giaField.setHorizontalAlignment(JTextField.LEFT);
-        giaField.setHorizontalAlignment(JTextField.RIGHT);
         panel.add(giaField, gbc);
 
         gbc.gridx = 0;
@@ -57,7 +63,6 @@ public class AddSPDialog extends JDialog {
         gbc.gridy = 2;
         soLuongField = new JTextField(10);
         soLuongField.setHorizontalAlignment(JTextField.LEFT);
-        soLuongField.setHorizontalAlignment(JTextField.RIGHT);
         panel.add(soLuongField, gbc);
 
         gbc.gridx = 0;
@@ -69,6 +74,19 @@ public class AddSPDialog extends JDialog {
         loaiSPField = new JTextField(20);
         loaiSPField.setHorizontalAlignment(JTextField.LEFT);
         panel.add(loaiSPField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(new JLabel("Nha Cung Cap:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for(NhaCungCap item: list){
+            model.addElement(item.getTenncc());
+        }
+        comboBox = new JComboBox<>(model);
+        panel.add(comboBox, gbc);
 
         // Thêm nút "Thêm" và "Hủy"
         JButton themButton = new JButton("Thêm");
@@ -93,7 +111,14 @@ public class AddSPDialog extends JDialog {
             int gia = Integer.parseInt(giaField.getText());
             int soLuong = Integer.parseInt(soLuongField.getText());
             String loaiSP = loaiSPField.getText();
-            callback.addSP(new SanPham(0, tenSP, gia, soLuong, loaiSP, 1));
+            int maNcc = -1;
+            for(NhaCungCap item: list){
+                if(item.getTenncc().equals(comboBox.getSelectedItem())){
+                    maNcc = item.getMancc();
+                    break;
+                }
+            }
+            callback.addSP(new SanPham(0, tenSP, gia, soLuong, loaiSP, maNcc));
             dispose();
         });
 
