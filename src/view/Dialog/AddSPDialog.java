@@ -93,7 +93,7 @@ public class AddSPDialog extends JDialog {
             int gia = Integer.parseInt(giaField.getText());
             int soLuong = Integer.parseInt(soLuongField.getText());
             String loaiSP = loaiSPField.getText();
-            callback.addSP(new SanPham(0, tenSP, gia, soLuong, loaiSP));
+            callback.addSP(new SanPham(0, tenSP, gia, soLuong, loaiSP, 1));
             dispose();
         });
 

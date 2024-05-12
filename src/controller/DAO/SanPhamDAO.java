@@ -84,7 +84,8 @@ public class SanPhamDAO implements DAO<SanPham> {
                 int gia = rs.getInt("gia");
                 int soluong = rs.getInt("soluong");
                 String loaisp = rs.getString("loaisp");
-                SanPham sp = new SanPham(masp, tensp, gia, soluong, loaisp);
+                int mancc = rs.getInt("mancc");
+                SanPham sp = new SanPham(masp, tensp, gia, soluong, loaisp, mancc);
                 result.add(sp);
             }
             JDBCUtil.closeConnection(con);
@@ -108,7 +109,8 @@ public class SanPhamDAO implements DAO<SanPham> {
                 int gia = rs.getInt("gia");
                 int soluong = rs.getInt("soluong");
                 String loaisp = rs.getString("loaisp");
-                result = new SanPham(masp, tensp, gia, soluong, loaisp);
+                int mancc = rs.getInt("mancc");
+                result = new SanPham(masp, tensp, gia, soluong, loaisp, mancc);
             }
             JDBCUtil.closeConnection(con);
         } catch (SQLException e) {

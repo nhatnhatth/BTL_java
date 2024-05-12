@@ -97,7 +97,7 @@ public class UpdateSPDialog extends JDialog {
             int gia = Integer.parseInt(giaField.getText());
             int soLuong = Integer.parseInt(soLuongField.getText());
             String loaiSP = loaiSPField.getText();
-            callback.updateSP(new SanPham(sp.getMasp(), tenSP, gia, soLuong, loaiSP));
+            callback.updateSP(new SanPham(sp.getMasp(), tenSP, gia, soLuong, loaiSP, 1));
             dispose();
         });
 

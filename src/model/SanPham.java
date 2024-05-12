@@ -15,17 +15,23 @@ public class SanPham {
     private int gia;
     private int soluong;
     private String loaisp;
+    private int mancc;
 
-
-    public SanPham() {
-    }
-
-    public SanPham(int masp, String tensp, int gia, int soluong, String loaisp) {
+    public SanPham(int masp, String tensp, int gia, int soluong, String loaisp, int mancc) {
         this.masp = masp;
         this.tensp = tensp;
         this.gia = gia;
         this.soluong = soluong;
         this.loaisp = loaisp;
+        this.mancc = mancc;
+    }
+
+    public int getMancc() {
+        return mancc;
+    }
+
+    public void setMancc(int mancc) {
+        this.mancc = mancc;
     }
 
     public int getMasp() {
