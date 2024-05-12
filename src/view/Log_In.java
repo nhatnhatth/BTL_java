@@ -7,6 +7,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
+import view.Dialog.AddHoaDonDialog;
 import view.Dialog.AddSPDialog;
 
 import javax.swing.*;
@@ -106,7 +107,7 @@ public class Log_In extends JFrame implements KeyListener {
         pnlMain.add(pnlLogIn);
 
         this.add(pnlMain, BorderLayout.EAST);
-//        new AddSPDialog(this, null).setVisible(true);
+//        new AddHoaDonDialog(this, null).setVisible(true);
     }
 
     public void checkLogin() throws UnsupportedLookAndFeelException {

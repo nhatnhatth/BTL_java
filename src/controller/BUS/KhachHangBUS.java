@@ -2,6 +2,8 @@ package controller.BUS;
 
 import controller.DAO.KhachHangDAO;
 import model.KhachHang;
+import model.SanPham;
+
 import java.util.ArrayList;
 
 public class KhachHangBUS {
@@ -30,6 +32,10 @@ public class KhachHangBUS {
     public void update(KhachHang kh) {
         khDAO.update(kh);
         listKhachHang = khDAO.selectAll();listKhachHang = khDAO.selectAll();
+    }
+
+    public KhachHang getKH(int makh) {
+        return khDAO.selectById(String.valueOf(makh));
     }
 
     public ArrayList<KhachHang> search(String text, String type) {

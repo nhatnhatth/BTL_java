@@ -4,58 +4,58 @@
  */
 package controller.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import config.JDBCUtil;
-import java.sql.Date;
-import java.sql.SQLException;
+import model.HoaDon;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.KhachHang;
 
-public class KhachHangDAO implements DAO<KhachHang> {
+public class HoaDonDAO implements DAO<HoaDon> {
 
-    public static KhachHangDAO getInstance() {
-        return new KhachHangDAO();
+    public static HoaDonDAO getInstance() {
+        return new HoaDonDAO();
     }
 
     @Override
-    public void insert(KhachHang t) {
+    public void insert(HoaDon t) {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `khachhang`(`tenKH`, `diachi`,`sdt`,`email`) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO `hoadon`(`manv`, `makh`,`masp`,`ngaylap`, `thanhtien`, `soluong`) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setString(1, t.getTenKH());
-            pst.setString(2, t.getDiachi());
-            pst.setString(3, t.getSdt());
-            pst.setString(4, "");
+            pst.setInt(1, t.getManv());
+            pst.setInt(2, t.getMakh());
+            pst.setInt(3, t.getMasp());
+            pst.setDate(4, t.getDate());
+            pst.setInt(5, t.getThanhtien());
+            pst.setInt(6, t.getSoluong());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
-            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void update(KhachHang t) {
+    public void update(HoaDon t) {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "UPDATE `khachhang` SET `makh`=?,`tenkh`=?,`diachi`=?,`sdt`=? WHERE makh=?";
+            String sql = "UPDATE `hoadon` SET `manv`=?,`makh`=?,`masp`=?,`ngaylap`=?,`thanhtien`=?, `soluong`=? WHERE mahd=?";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMaKH());
-            pst.setString(2, t.getTenKH());
-            pst.setString(3, t.getDiachi());
-            pst.setString(4, t.getSdt());
-            pst.setInt(5, t.getMaKH());
-            
+            pst.setInt(1, t.getManv());
+            pst.setInt(2, t.getMakh());
+            pst.setInt(3, t.getMasp());
+            pst.setDate(4, t.getDate());
+            pst.setInt(5, t.getThanhtien());
+            pst.setInt(6, t.getSoluong());
+            pst.setInt(7, t.getMahd());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
-            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -64,30 +64,34 @@ public class KhachHangDAO implements DAO<KhachHang> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "DELETE FROM  `khachhang` WHERE `makh` = ?";
+            String sql = "DELETE FROM  `hoadon` WHERE `mahd` = ?";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, t);
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
-            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public ArrayList<KhachHang> selectAll() {
-        ArrayList<KhachHang> result = new ArrayList<KhachHang>();
+    public ArrayList<HoaDon> selectAll() {
+        ArrayList<HoaDon> result = new ArrayList<HoaDon>();
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "SELECT * FROM khachhang";
+            String sql = "SELECT * FROM hoadon";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             ResultSet rs = (ResultSet) pst.executeQuery();
             while(rs.next()){
+                int mahd = rs.getInt("mahd");
+                int manv = rs.getInt("manv");
                 int makh = rs.getInt("makh");
-                String tenkhachhang = rs.getString("tenkh");
-                String diachi = rs.getString("diachi");
-                String sdt = rs.getString("sdt");
-                KhachHang kh = new KhachHang(makh, tenkhachhang, diachi, sdt);
+                int masp = rs.getInt("masp");
+                Date date =rs.getDate("ngaylap");
+                int thanhtien = rs.getInt("thanhtien");
+                int soluong = rs.getInt("soluong");
+
+                HoaDon kh = new HoaDon(mahd, manv, makh, masp, date, thanhtien, soluong);
                 result.add(kh);
             }
             JDBCUtil.closeConnection(con);
@@ -98,20 +102,24 @@ public class KhachHangDAO implements DAO<KhachHang> {
     }
 
     @Override
-    public KhachHang selectById(String t) {
-        KhachHang result = null;
+    public HoaDon selectById(String t) {
+        HoaDon result = null;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "SELECT * FROM khachhang WHERE makh=?";
+            String sql = "SELECT * FROM hoadon WHERE mahd=?";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, t);
             ResultSet rs = (ResultSet) pst.executeQuery();
             while(rs.next()){
+                int mahd = rs.getInt("mahd");
+                int manv = rs.getInt("manv");
                 int makh = rs.getInt("makh");
-                String tenkhachhang = rs.getString("tenkh");
-                String diachi = rs.getString("diachi");
-                String sdt = rs.getString("sdt");
-                result = new KhachHang(makh, tenkhachhang, sdt, diachi);
+                int masp = rs.getInt("masp");
+                Date date =rs.getDate("ngaylap");
+                int thanhtien = rs.getInt("thanhtien");
+                int soluong = rs.getInt("soluong");
+
+                result = new HoaDon(mahd, manv, makh, masp, date, thanhtien, soluong);
             }
             JDBCUtil.closeConnection(con);
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package controller.BUS;
 
 import controller.DAO.SanPhamDAO;
+import model.NhaCungCap;
 import model.SanPham;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class SanPhamBUS {
         spDAO.update(sp);
         listSP = spDAO.selectAll();
     }
+    public SanPham getSP(int masp) {
+        return spDAO.selectById(String.valueOf(masp));
+    }
 
     public ArrayList<SanPham> search(String text) {
         text = text.toLowerCase();
@@ -44,4 +48,5 @@ public class SanPhamBUS {
         }
         return result;
     }
+
 }

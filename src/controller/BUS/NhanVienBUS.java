@@ -6,6 +6,7 @@ package controller.BUS;
 
 import controller.DAO.NhanVienDAO;
 import model.NhanVien;
+import model.SanPham;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,10 @@ public class NhanVienBUS {
     public void delete(NhanVien nv) {
         NhanVienDAO.getInstance().delete(String.valueOf(nv.getMaNV()));
         listNv = NhanVienDAO.getInstance().selectAll();
+    }
+
+    public NhanVien getNV(int manv) {
+        return nhanVienDAO.selectById(String.valueOf(manv));
     }
 
 

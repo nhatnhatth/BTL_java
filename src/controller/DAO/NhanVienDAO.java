@@ -101,7 +101,7 @@ public class NhanVienDAO implements DAO<NhanVien> {
         NhanVien result = null;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "SELECT * FROM khachhang WHERE makh=?";
+            String sql = "SELECT * FROM nhanvien WHERE manv=?";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, t);
             ResultSet rs = (ResultSet) pst.executeQuery();
