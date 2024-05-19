@@ -12,7 +12,7 @@ public class JDBCUtil {
             // Dang ky MySQL Driver voi DriverManager
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             //Cac thong so
-            String url = "jdbc:mySQL://localhost:3306/quanlysieuthi";
+            String url = "jdbc:mySQL://localhost:3333/quanlysieuthi";
             String userName = "root";
             String password = "";
             //Tao ket noi 
@@ -29,7 +29,6 @@ public class JDBCUtil {
                 c.close();
             }
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }

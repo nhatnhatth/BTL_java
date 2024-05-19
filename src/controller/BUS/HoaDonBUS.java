@@ -40,4 +40,8 @@ public class HoaDonBUS {
         text = text.toLowerCase();
         return result;
     }
+
+    public int getDT(){
+        return dao.getDT();
+    }
 }

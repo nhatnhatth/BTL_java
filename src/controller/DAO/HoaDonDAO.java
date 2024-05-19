@@ -127,4 +127,21 @@ public class HoaDonDAO implements DAO<HoaDon> {
         }
         return result;
     }
+
+    public int getDT() {
+        int dt = 0;
+        try {
+            Connection con = (Connection) JDBCUtil.getConnection();
+            String sql = "SELECT SUM(thanhtien) as dt from hoadon";
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
+            ResultSet rs = (ResultSet) pst.executeQuery();
+            while(rs.next()){
+                dt = rs.getInt("dt");
+            }
+            JDBCUtil.closeConnection(con);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return dt;
+    }
 }
