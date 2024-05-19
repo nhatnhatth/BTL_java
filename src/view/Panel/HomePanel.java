@@ -3,11 +3,13 @@ package view.Panel;
 import javax.swing.*;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.kitfox.svg.Title;
 import controller.BUS.*;
 import view.Component.TitledContentPanel;
+import view.Main;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class HomePanel extends JPanel {
@@ -19,6 +21,7 @@ public class HomePanel extends JPanel {
     NhaCungCapBUS nhaCungCapBUS = new NhaCungCapBUS();
     HoaDonBUS hoaDonBUS = new HoaDonBUS();
     ArrayList<String> details = new ArrayList<String>();
+    private Callback callback = null;
     private void initComponent() {
         setLayout(new GridLayout(2, 4, 30, 80));
         setBorder(BorderFactory.createEmptyBorder(100, 32, 32, 32)); // Set padding values
@@ -27,6 +30,15 @@ public class HomePanel extends JPanel {
             JPanel subPanel = new TitledContentPanel(titleArr[i], details.get(i));
             subPanel.setBackground(getColor(i)); // Đặt màu cho panel con
             add(subPanel); // Thêm panel con vào panel gốc
+            int finalI = i;
+            subPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if(finalI!=5){
+                        callback.onSelect(finalI);
+                    }
+                }
+            });
         }
     }
 
@@ -39,7 +51,8 @@ public class HomePanel extends JPanel {
         details.add(String.valueOf(hoaDonBUS.getDT()));
     }
 
-    public HomePanel() {
+    public HomePanel(Callback callback) {
+        this.callback = callback;
         initComponent();
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
@@ -64,6 +77,9 @@ public class HomePanel extends JPanel {
             default:
                 return Color.WHITE;
         }
+    }
+    public interface Callback{
+        void onSelect(int pos);
     }
 }
 

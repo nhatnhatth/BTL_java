@@ -43,7 +43,12 @@ public class Main extends JFrame {
 
         this.add(MainContent, BorderLayout.CENTER);
 
-        homePanel = new HomePanel();
+        homePanel = new HomePanel(new HomePanel.Callback() {
+            @Override
+            public void onSelect(int pos) {
+                menuTaskbar.changeTab(pos);
+            }
+        });
         MainContent.add(homePanel).setVisible(true);
     }
 

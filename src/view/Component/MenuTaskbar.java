@@ -144,7 +144,12 @@ public class MenuTaskbar extends JPanel {
         listitem[0].addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
-                homePanel = new HomePanel();
+                homePanel = new HomePanel(new HomePanel.Callback() {
+                    @Override
+                    public void onSelect(int pos) {
+                        changeTab(pos);
+                    }
+                });
                 main.setPanel(homePanel);
             }
         });
@@ -204,8 +209,43 @@ public class MenuTaskbar extends JPanel {
         });
     }
 
-    public void pnlMenuTaskbarMousePress(MouseEvent evt) {
+    public void changeTab(int pos) {
+        for (int i = 0; i < getSt.length; i++) {
+            if (pos == i-1) {
+                listitem[i].isSelected = true;
+                listitem[i].setBackground(HowerBackgroundColor);
+                listitem[i].setForeground(HowerFontColor);
+            } else {
+                listitem[i].isSelected = false;
+                listitem[i].setBackground(DefaultColor);
+                listitem[i].setForeground(FontColor);
+            }
+        }
+        switch (pos){
+            case 0:
+                sanPham = new SanPhamPanel(main);
+                main.setPanel(sanPham);
+                break;
+            case 1:
+                khachHangPanel = new KhachHangPanel(main);
+                main.setPanel(khachHangPanel);
+                break;
+            case 2:
+                nhanVienPanel = new NhanVienPanel(main);
+                main.setPanel(nhanVienPanel);
+                break;
+            case 3:
+                nccPanel = new NhaCungCapPanel(main);
+                main.setPanel(nccPanel);
+                break;
+            case 4:
+                hdPanel = new HoaDonPanel(main);
+                main.setPanel(hdPanel);
+                break;
+        }
+    }
 
+    public void pnlMenuTaskbarMousePress(MouseEvent evt) {
         for (int i = 0; i < getSt.length; i++) {
             if (evt.getSource() == listitem[i]) {
                 listitem[i].isSelected = true;
