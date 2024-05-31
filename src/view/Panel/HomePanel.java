@@ -13,8 +13,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class HomePanel extends JPanel {
-
-    String titleArr[] = {"San Pham", "Khach hang", "Nhan vien", "Nha cung cap", "Hoa don", "Doanh thu"};
+    String titleArr[] = {"Sản phẩm", "Khách hàng", "Nhân viên", "Nhà cung cấp", "Hóa đơn", "Doanh thu"};
     SanPhamBUS sanPhamBUS = new SanPhamBUS();
     KhachHangBUS khachHangBUS = new KhachHangBUS();
     NhanVienBUS nhanVienBUS = new NhanVienBUS();

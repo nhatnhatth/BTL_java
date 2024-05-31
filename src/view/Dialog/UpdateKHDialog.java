@@ -13,7 +13,7 @@ public class UpdateKHDialog extends JDialog {
     private Callback callback;
 
     public UpdateKHDialog(JFrame parent, KhachHang kh, Callback callback) {
-        super(parent, "Update khach hang", false);
+        super(parent, "Cập nhật khách hàng", false);
         this.callback = callback;
         // Tạo panel cho dialog
         JPanel panel = new JPanel();
@@ -29,7 +29,7 @@ public class UpdateKHDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(new JLabel("Tên khach hang:"), gbc);
+        panel.add(new JLabel("Tên khách hàng:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -40,7 +40,7 @@ public class UpdateKHDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(new JLabel("Dia chi:"), gbc);
+        panel.add(new JLabel("Địa chỉ:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -51,7 +51,7 @@ public class UpdateKHDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Số dien thoai:"), gbc);
+        panel.add(new JLabel("Số điện thoại:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -61,7 +61,7 @@ public class UpdateKHDialog extends JDialog {
         panel.add(sdtField, gbc);
 
         // Thêm nút "Thêm" và "Hủy"
-        JButton themButton = new JButton("Update");
+        JButton themButton = new JButton("Cập nhật");
         JButton huyButton = new JButton("Hủy");
 
         gbc.gridx = 2;

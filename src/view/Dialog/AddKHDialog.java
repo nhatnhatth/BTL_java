@@ -13,7 +13,7 @@ public class AddKHDialog extends JDialog {
     private Callback callback;
 
     public AddKHDialog(JFrame parent, Callback callback) {
-        super(parent, "Thêm khach hang", false);
+        super(parent, "Thêm khách hàng", false);
         this.callback = callback;
         // Tạo panel cho dialog
         JPanel panel = new JPanel();
@@ -29,7 +29,7 @@ public class AddKHDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(new JLabel("Tên khach hang:"), gbc);
+        panel.add(new JLabel("Tên khách hàng:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -39,7 +39,7 @@ public class AddKHDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(new JLabel("Dia chi:"), gbc);
+        panel.add(new JLabel("Địa chỉ:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -49,7 +49,7 @@ public class AddKHDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Số dien thoai:"), gbc);
+        panel.add(new JLabel("Số điện thoại:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;

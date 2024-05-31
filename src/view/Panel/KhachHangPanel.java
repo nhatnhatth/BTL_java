@@ -191,7 +191,7 @@ public class KhachHangPanel extends JPanel implements ActionListener, ItemListen
                     public void update(model.KhachHang kh) {
                         khachhangBUS.update(kh);
                         listkh = khachhangBUS.getAll();
-                        JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                        JOptionPane.showMessageDialog(owner, "Cập nhật khách hàng thành công !");
                         loadDataTable(listkh);
                     }
                 });
@@ -205,7 +205,7 @@ public class KhachHangPanel extends JPanel implements ActionListener, ItemListen
                 if (input == 0) {
                     khachhangBUS.delete(listkh.get(index));
                     listkh = khachhangBUS.getAll();
-                    JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Xóa khách hàng thành công !");
                     loadDataTable(listkh);
                 }
             }
