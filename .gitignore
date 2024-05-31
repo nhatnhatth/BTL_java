@@ -1,0 +1,20 @@
+/nbproject/private/
+/build/
+/dist/
+nbproject/private/private.xml
+nbproject/private/private.properties
+nbproject/private/private.properties
+nbproject/private/private.xml
+nbproject/private/private.properties
+nbproject/private/private.xml
+nbproject/private/private.properties
+nbproject/private/private.xml
+nbproject/private/private.xml
+nbproject/private/private.xml
+nbproject/private/private.properties
+nbproject/private/private.properties
+
+# Project exclude paths
+/out/
+
+.idea
