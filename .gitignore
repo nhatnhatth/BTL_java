@@ -16,3 +16,5 @@ nbproject/private/private.properties
 
 # Project exclude paths
 /out/
+
+.idea
