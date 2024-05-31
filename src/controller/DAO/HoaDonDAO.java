@@ -4,7 +4,7 @@
  */
 package controller.DAO;
 
-import config.JDBCUtil;
+import controller.config.JDBCUtil;
 import model.HoaDon;
 
 import java.sql.*;

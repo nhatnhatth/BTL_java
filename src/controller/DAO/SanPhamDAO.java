@@ -1,7 +1,7 @@
 package controller.DAO;
 
 import model.SanPham;
-import config.JDBCUtil;
+import controller.config.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

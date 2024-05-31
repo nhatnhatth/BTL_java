@@ -1,6 +1,6 @@
 package controller.DAO;
 
-import config.JDBCUtil;
+import controller.config.JDBCUtil;
 import model.TaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -7,7 +7,7 @@ package controller.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import config.JDBCUtil;
+import controller.config.JDBCUtil;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;

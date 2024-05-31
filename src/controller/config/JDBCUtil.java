@@ -1,4 +1,4 @@
-package config;
+package controller.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +12,9 @@ public class JDBCUtil {
             // Dang ky MySQL Driver voi DriverManager
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             //Cac thong so
-            String url = "jdbc:mySQL://localhost:3333/quanlysieuthi";
+            String url = "jdbc:mySQL://localhost:3306/quanlysieuthi";
             String userName = "root";
-            String password = "";
+            String password = "123456";
             //Tao ket noi 
             result = DriverManager.getConnection(url, userName, password);
         } catch (Exception e) {
