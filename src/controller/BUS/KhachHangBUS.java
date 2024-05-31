@@ -31,7 +31,7 @@ public class KhachHangBUS {
 
     public void update(KhachHang kh) {
         khDAO.update(kh);
-        listKhachHang = khDAO.selectAll();listKhachHang = khDAO.selectAll();
+        listKhachHang = khDAO.selectAll();
     }
 
     public KhachHang getKH(int makh) {
