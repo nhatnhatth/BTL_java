@@ -179,7 +179,7 @@ public class KhachHangPanel extends JPanel implements ActionListener, ItemListen
                 public void addSP(model.KhachHang kh) {
                     khachhangBUS.add(kh);
                     listkh = khachhangBUS.getAll();
-                    JOptionPane.showMessageDialog(owner, "Thêm sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Thêm khách hàng thành công !");
                     loadDataTable(listkh);
                 }
             });
