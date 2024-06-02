@@ -5,6 +5,7 @@ import controller.DAO.HoaDonDAO;
 import model.HoaDon;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class HoaDonBUS {
 
@@ -40,6 +41,18 @@ public class HoaDonBUS {
         text = text.toLowerCase();
         return result;
     }
+
+    public ArrayList<HoaDon> search(String text) {
+        try {
+            return this.list.stream()
+                    .filter((hd) -> String.valueOf(hd.getMahd()).contains(text))
+                    .collect(Collectors.toCollection(ArrayList::new));
+        } catch (NumberFormatException e) {
+            return new ArrayList<>();
+        }
+    }
+
+
 
     public int getDT(){
         return dao.getDT();

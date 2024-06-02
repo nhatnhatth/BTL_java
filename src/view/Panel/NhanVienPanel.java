@@ -1,6 +1,7 @@
 package view.Panel;
 
 import controller.BUS.NhanVienBUS;
+import model.NhanVien;
 import view.Component.IntegratedSearch;
 import view.Component.MainFunction;
 import java.awt.*;
@@ -12,7 +13,11 @@ import view.Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -77,10 +82,28 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
             mainFunction.btn.get(ac).addActionListener(this);
         }
         functionBar.add(mainFunction);
-        search = new IntegratedSearch(new String[]{"Tất cả", "Họ tên", "Email"});
+        search = new IntegratedSearch(new String[]{"Tên nhân viên"});
+        search.txtSearchForm.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String txt = search.txtSearchForm.getText();
+                if(!txt.isEmpty()){
+                    listnv = nvBus.search(txt);
+                    loadTable(listnv);
+                }
+                else{
+                    search.txtSearchForm.setText("");
+                    listnv = nvBus.getAll();
+                    loadTable(listnv);
+                }
+            }
+        });
         functionBar.add(search);
-        search.btnReset.addActionListener(this);
-        search.cbxChoose.addActionListener(this);
+        search.btnReset.addActionListener((ActionEvent e) -> {
+            search.txtSearchForm.setText("");
+            listnv = nvBus.getAll();
+            loadTable(listnv);
+        });
 
         // main là phần ở dưới để thống kê bảng biểu
         main = new PanelBorderRadius();
@@ -119,11 +142,13 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
     }
 
     public void loadTable(ArrayList<model.NhanVien> list) {
-        listnv = list;
         tblModel.setRowCount(0);
-        for (model.NhanVien nhanVien : listnv) {
+        for (model.NhanVien nhanVien : list) {
             tblModel.addRow(new Object[]{
-                nhanVien.getMaNV(), nhanVien.getTenNV(), nhanVien.getDiachi(), nhanVien.getSdt()
+                nhanVien.getMaNV(),
+                nhanVien.getTenNV(),
+                nhanVien.getDiachi(),
+                nhanVien.getSdt()
             });
         }
     }

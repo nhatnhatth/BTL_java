@@ -103,15 +103,21 @@ public class HoaDonPanel extends JPanel implements ActionListener, ItemListener 
         }
         functionBar.add(mainFunction);
 
-        search = new IntegratedSearch(new String[]{"Tất cả", "Mã khách hàng", "Tên khách hàng", "Địa chỉ", "Số điện thoại"});
+        search = new IntegratedSearch(new String[]{"Mã hóa đơn"});
         search.cbxChoose.addItemListener(this);
         search.txtSearchForm.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String type = (String) search.cbxChoose.getSelectedItem();
                 String txt = search.txtSearchForm.getText();
-                list = hoaDonBUS.search(txt, type);
-                loadDataTable(list);
+                if(!txt.isEmpty()) {
+                    list = hoaDonBUS.search(txt);
+                    loadDataTable(list);
+                }
+                else{
+                    search.txtSearchForm.setText("");
+                    list = hoaDonBUS.getAll();
+                    loadDataTable(list);
+                }
             }
         });
 

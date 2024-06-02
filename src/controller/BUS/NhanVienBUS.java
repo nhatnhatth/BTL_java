@@ -9,6 +9,7 @@ import model.NhanVien;
 import model.SanPham;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -46,7 +47,9 @@ public class NhanVienBUS {
 
 
     public ArrayList<NhanVien> search(String text) {
-        ArrayList<NhanVien> result = new ArrayList<>();
-        return result;
+        String lowerCaseText = text.toLowerCase();
+        return this.listNv.stream()
+                .filter(nv -> nv.getTenNV().toLowerCase().contains(lowerCaseText))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

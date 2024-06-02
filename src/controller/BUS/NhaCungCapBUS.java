@@ -49,14 +49,14 @@ public class NhaCungCapBUS {
                     }
                 }
             }
-            case "Mã nccách hàng" -> {
+            case "Mã nhà cung cấp" -> {
                 for (NhaCungCap i : this.listNcc) {
                     if (Integer.toString(i.getMancc()).toLowerCase().contains(text)) {
                         result.add(i);
                     }
                 }
             }
-            case "Tên nccách hàng" -> {
+            case "Tên nhà cung cấp" -> {
                 for (NhaCungCap i : this.listNcc) {
                     if (i.getTenncc().toLowerCase().contains(text)) {
                         result.add(i);
