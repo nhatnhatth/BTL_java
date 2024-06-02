@@ -41,7 +41,7 @@ public class NhaCungCapPanel extends JPanel implements ActionListener, ItemListe
         table = new JTable();
         scrollTable = new JScrollPane();
         tblModel = new DefaultTableModel();
-        String[] header = new String[]{"Mã khách hàng", "Tên khách hàng", "Địa chỉ", "Số điện thoại"};
+        String[] header = new String[]{"Mã nhà cung cấp", "Tên nhà cung cấp", "Địa chỉ", "Số điện thoại"};
         tblModel.setColumnIdentifiers(header);
         table.setModel(tblModel);
         table.setFocusable(false);
@@ -96,7 +96,7 @@ public class NhaCungCapPanel extends JPanel implements ActionListener, ItemListe
         }
         functionBar.add(mainFunction);
 
-        search = new IntegratedSearch(new String[]{"Tất cả", "Mã khách hàng", "Tên khách hàng", "Địa chỉ", "Số điện thoại"});
+        search = new IntegratedSearch(new String[]{"Tất cả", "Mã nhà cung cấp", "Tên nhà cung cấp", "Địa chỉ", "Số điện thoại"});
         search.cbxChoose.addItemListener(this);
         search.txtSearchForm.addKeyListener(new KeyAdapter() {
             @Override
@@ -146,7 +146,7 @@ public class NhaCungCapPanel extends JPanel implements ActionListener, ItemListe
     public int getRowSelected() {
         int index = table.getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng");
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà cung cấp");
         }
         return index;
     }
@@ -176,7 +176,7 @@ public class NhaCungCapPanel extends JPanel implements ActionListener, ItemListe
                 public void add(NhaCungCap ncc) {
                     bus.add(ncc);
                     list = bus.getAll();
-                    JOptionPane.showMessageDialog(owner, "Thêm sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Thêm nhà cung cấp thành công !");
                     loadDataTable(list);
                 }
             });
@@ -188,7 +188,7 @@ public class NhaCungCapPanel extends JPanel implements ActionListener, ItemListe
                     public void update(NhaCungCap kh) {
                         bus.update(kh);
                         list = bus.getAll();
-                        JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                        JOptionPane.showMessageDialog(owner, "Update nhà cung cấp thành công !");
                         loadDataTable(list);
                     }
                 });
@@ -197,12 +197,12 @@ public class NhaCungCapPanel extends JPanel implements ActionListener, ItemListe
             int index = getRowSelected();
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null,
-                        "Bạn có chắc chắn muốn xóa khách hàng?", "Xóa khách hàng",
+                        "Bạn có chắc chắn muốn xóa nhà cung cấp?", "Xóa nhà cung cấp",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
                     bus.delete(list.get(index));
                     list = bus.getAll();
-                    JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Update nhà cung cấp thành công !");
                     loadDataTable(list);
                 }
             }

@@ -48,7 +48,7 @@ public class HoaDonPanel extends JPanel implements ActionListener, ItemListener 
         table = new JTable();
         scrollTable = new JScrollPane();
         tblModel = new DefaultTableModel();
-        String[] header = new String[]{"Mã hoa don", "Tên San Pham", "Ten Nhan vien", "Ten Khach Hang", "So luong", "Ngay lap", "Thanhtien"};
+        String[] header = new String[]{"Mã hóa đơn", "Tên Sản phẩm", "Tên Nhân viên", "Tên Khách hàng", "Số lượng", "Ngày nhập", "Thành tiền"};
         tblModel.setColumnIdentifiers(header);
         table.setModel(tblModel);
         table.setFocusable(false);
@@ -160,7 +160,7 @@ public class HoaDonPanel extends JPanel implements ActionListener, ItemListener 
     public int getRowSelected() {
         int index = table.getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng");
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn");
         }
         return index;
     }
@@ -190,7 +190,7 @@ public class HoaDonPanel extends JPanel implements ActionListener, ItemListener 
                 public void add(HoaDon hd) {
                     hoaDonBUS.add(hd);
                     list = hoaDonBUS.getAll();
-                    JOptionPane.showMessageDialog(owner, "Thêm sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Thêm hóa đơn thành công !");
                     loadDataTable(list);
                 }
             });
@@ -203,7 +203,7 @@ public class HoaDonPanel extends JPanel implements ActionListener, ItemListener 
                     public void update(HoaDon hd) {
                         hoaDonBUS.update(hd);
                         list = hoaDonBUS.getAll();
-                        JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                        JOptionPane.showMessageDialog(owner, "Update hóa đơn thành công !");
                         loadDataTable(list);
                     }
                 });
@@ -212,12 +212,12 @@ public class HoaDonPanel extends JPanel implements ActionListener, ItemListener 
             int index = getRowSelected();
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null,
-                        "Bạn có chắc chắn muốn xóa hoa don?", "Xóa hoa don",
+                        "Bạn có chắc chắn muốn xóa hóa đơn?", "Xóa hóa đơn",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
                     hoaDonBUS.delete(list.get(index));
                     list = hoaDonBUS.getAll();
-                    JOptionPane.showMessageDialog(owner, "Update hoa don thành công !");
+                    JOptionPane.showMessageDialog(owner, "Update hóa đơn thành công !");
                     loadDataTable(list);
                 }
             }

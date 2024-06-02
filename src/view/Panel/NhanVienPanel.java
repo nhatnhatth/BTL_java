@@ -93,7 +93,7 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
         scrollTableSanPham = new JScrollPane();
         tableNhanVien = new JTable();
         tblModel = new DefaultTableModel();
-        String[] header = new String[]{"Ma Nhan vien", "Ten nhan vien", "Dia chi", "So dien thoai"};
+        String[] header = new String[]{"Mã nhân viên", "Tên nhân viên", "Địa chỉ", "Số điện thoại"};
 
         tblModel.setColumnIdentifiers(header);
         tableNhanVien.setModel(tblModel);
@@ -136,7 +136,7 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
                 public void addNV(model.NhanVien nv) {
                     nvBus.add(nv);
                     listnv = nvBus.getAll();
-                    JOptionPane.showMessageDialog(owner, "Thêm sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Thêm nhân viên thành công !");
                     loadTable(listnv);
                 }
             });
@@ -148,7 +148,7 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
                     public void update(model.NhanVien nhanVien) {
                         nvBus.update(nhanVien);
                         listnv = nvBus.getAll();
-                        JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                        JOptionPane.showMessageDialog(owner, "Update nhân viên thành công !");
                         loadTable(listnv);
                     }
                 });
@@ -157,12 +157,12 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
             int index = getRowSelected();
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null,
-                        "Bạn có chắc chắn muốn xóa khách hàng?", "Xóa khách hàng",
+                        "Bạn có chắc chắn muốn xóa nhân viên?", "Xóa nhân viên",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
                     nvBus.delete(listnv.get(index));
                     listnv = nvBus.getAll();
-                    JOptionPane.showMessageDialog(owner, "Update sản phẩm thành công !");
+                    JOptionPane.showMessageDialog(owner, "Update nhân viên thành công !");
                     loadTable(listnv);
                 }
             }
@@ -176,7 +176,7 @@ public final class NhanVienPanel extends JPanel implements ActionListener {
     public int getRowSelected() {
         int index = tableNhanVien.getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng");
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn nhân viên");
         }
         return index;
     }

@@ -29,7 +29,7 @@ public class UpdateNCCDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(new JLabel("Tên khach hang:"), gbc);
+        panel.add(new JLabel("Tên nhà cung cấp:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -40,7 +40,7 @@ public class UpdateNCCDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(new JLabel("Dia chi:"), gbc);
+        panel.add(new JLabel("Địa chỉ:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -51,7 +51,7 @@ public class UpdateNCCDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Số dien thoai:"), gbc);
+        panel.add(new JLabel("Số điện thoại:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;

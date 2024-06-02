@@ -49,7 +49,7 @@ public class DetailHoaDonDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(new JLabel("Nhan vien"), gbc);
+        panel.add(new JLabel("Nhân viên"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -59,7 +59,7 @@ public class DetailHoaDonDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Khach hang:"), gbc);
+        panel.add(new JLabel("Khách hàng:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -69,7 +69,7 @@ public class DetailHoaDonDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        panel.add(new JLabel("Ngay nhap:"), gbc);
+        panel.add(new JLabel("Ngày nhập:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -79,7 +79,7 @@ public class DetailHoaDonDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 4;
-        panel.add(new JLabel("So luong:"), gbc);
+        panel.add(new JLabel("Số lượng:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 4;
@@ -90,7 +90,7 @@ public class DetailHoaDonDialog extends JDialog {
 
         gbc.gridx = 0;
         gbc.gridy = 5;
-        panel.add(new JLabel("Thanh tien:"), gbc);
+        panel.add(new JLabel("Thành tiền:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 5;
