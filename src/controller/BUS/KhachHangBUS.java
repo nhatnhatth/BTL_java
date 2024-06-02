@@ -24,9 +24,12 @@ public class KhachHangBUS {
         listKhachHang = khDAO.selectAll();
     }
 
-    public void delete(KhachHang kh) {
-        khDAO.delete(Integer.toString(kh.getMaKH()));
-        listKhachHang = khDAO.selectAll();
+    public boolean delete(KhachHang kh) {
+        boolean success = khDAO.deleteCheck(Integer.toString(kh.getMaKH()));
+        if(success){
+            listKhachHang = khDAO.selectAll();
+        }
+        return success;
     }
 
     public void update(KhachHang kh) {

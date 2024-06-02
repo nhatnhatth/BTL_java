@@ -23,7 +23,6 @@ public class KhachHangDAO implements DAO<KhachHang> {
 
     @Override
     public void insert(KhachHang t) {
-        int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
             String sql = "INSERT INTO `khachhang`(`tenKH`, `diachi`,`sdt`,`email`) VALUES (?,?,?,?)";
@@ -32,7 +31,7 @@ public class KhachHangDAO implements DAO<KhachHang> {
             pst.setString(2, t.getDiachi());
             pst.setString(3, t.getSdt());
             pst.setString(4, "");
-            result = pst.executeUpdate();
+            pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,7 +40,6 @@ public class KhachHangDAO implements DAO<KhachHang> {
 
     @Override
     public void update(KhachHang t) {
-        int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
             String sql = "UPDATE `khachhang` SET `makh`=?,`tenkh`=?,`diachi`=?,`sdt`=? WHERE makh=?";
@@ -52,7 +50,7 @@ public class KhachHangDAO implements DAO<KhachHang> {
             pst.setString(4, t.getSdt());
             pst.setInt(5, t.getMaKH());
             
-            result = pst.executeUpdate();
+            pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,16 +59,30 @@ public class KhachHangDAO implements DAO<KhachHang> {
 
     @Override
     public void delete(String t) {
-        int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
             String sql = "DELETE FROM  `khachhang` WHERE `makh` = ?";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
             pst.setString(1, t);
-            result = pst.executeUpdate();
+            pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public boolean deleteCheck(String t) {
+        try {
+            Connection con = (Connection) JDBCUtil.getConnection();
+            String sql = "DELETE FROM  `khachhang` WHERE `makh` = ?";
+            PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
+            pst.setString(1, t);
+            pst.executeUpdate();
+            JDBCUtil.closeConnection(con);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 

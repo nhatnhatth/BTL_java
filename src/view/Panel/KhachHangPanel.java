@@ -3,9 +3,11 @@ package view.Panel;
 import controller.BUS.KhachHangBUS;
 import view.Component.IntegratedSearch;
 import view.Component.MainFunction;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import view.Component.PanelBorderRadius;
 import view.Component.TableSorter;
 import view.Dialog.*;
@@ -141,7 +143,7 @@ public class KhachHangPanel extends JPanel implements ActionListener, ItemListen
         tblModel.setRowCount(0);
         for (model.KhachHang khachHang : result) {
             tblModel.addRow(new Object[]{
-                khachHang.getMaKH(), khachHang.getTenKH(), khachHang.getDiachi(), khachHang.getSdt()
+                    khachHang.getMaKH(), khachHang.getTenKH(), khachHang.getDiachi(), khachHang.getSdt()
             });
         }
     }
@@ -203,16 +205,22 @@ public class KhachHangPanel extends JPanel implements ActionListener, ItemListen
                         "Bạn có chắc chắn muốn xóa khách hàng?", "Xóa khách hàng",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
-                    khachhangBUS.delete(listkh.get(index));
-                    listkh = khachhangBUS.getAll();
-                    JOptionPane.showMessageDialog(owner, "Xóa khách hàng thành công !");
-                    loadDataTable(listkh);
+                    boolean success = khachhangBUS.delete(listkh.get(index));
+                    if (success) {
+                        listkh = khachhangBUS.getAll();
+                        JOptionPane.showMessageDialog(owner, "Xóa khách hàng thành công !");
+                        loadDataTable(listkh);
+                    } else {
+                        JOptionPane.showMessageDialog(owner, "Khách hàng này không thể xóa !");
+                    }
+
                 }
             }
         } else if (e.getSource() == mainFunction.btn.get("detail")) {
             int index = getRowSelected();
             if (index != -1) {
-                new DetailKHDialog(owner, listkh.get(index));            }
+                new DetailKHDialog(owner, listkh.get(index));
+            }
         }
     }
 
