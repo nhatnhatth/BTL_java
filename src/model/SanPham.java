@@ -4,10 +4,6 @@
  */
 package model;
 
-/**
- *
- * @author 84907
- */
 public class SanPham {
 
     private int masp;

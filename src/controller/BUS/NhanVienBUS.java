@@ -11,10 +11,6 @@ import model.SanPham;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author robot
- */
 public class NhanVienBUS {
     public ArrayList<NhanVien> listNv = NhanVienDAO.getInstance().selectAll();
     public NhanVienDAO nhanVienDAO = NhanVienDAO.getInstance();

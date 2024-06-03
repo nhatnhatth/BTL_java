@@ -23,10 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
-/**
- *
- * @author 84907
- */
 public class InputImage extends JPanel implements ActionListener {
 
     private JButton btnChooseImg;

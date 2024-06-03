@@ -2,9 +2,6 @@ package controller.DAO;
 
 import java.util.ArrayList;
 
-/**
- * @author robot
- */
 public interface DAO<T> {
     void insert(T t);
 

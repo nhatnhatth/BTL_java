@@ -6,10 +6,6 @@ package model;
 
 import java.util.Objects;
 
-/**
- *
- * @author robot
- */
 public class TaiKhoan {
     private int id;
     private String username;

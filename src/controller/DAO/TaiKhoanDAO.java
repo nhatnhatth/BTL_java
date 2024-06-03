@@ -7,10 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author robot
- */
+
 public class TaiKhoanDAO implements DAO<TaiKhoan> {
     
     public static TaiKhoanDAO getInstance(){
